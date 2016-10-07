@@ -12,3 +12,6 @@ description: |
 peers:
   loadbalance:
     interface: vpe-router
+tags:
+  - vnf
+  - network
