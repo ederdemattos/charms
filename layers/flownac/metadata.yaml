@@ -1,0 +1,15 @@
+name: flownac
+summary: Charms for the FlowNAC NS
+maintainer: Jokin Garay <jokin.garay@keynetic.es>
+description: |
+  Charms for the FlowNAC NS
+tags:
+  # Replace "misc" with one or more whitelisted tags from this list:
+  # https://jujucharms.com/docs/stable/authors-charm-metadata
+  - security
+  - vnf
+  - osm
+subordinate: false
+series:
+    - trusty
+    - xenial

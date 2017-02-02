@@ -1,0 +1,10 @@
+start:
+    description: "Start the VNF service."
+stop:
+    description: "Stop the VNF service."
+restart:
+    description: "Restart the VNF service."
+check-serv:
+    description: "Check service is reachable."
+start-client:
+    description: "Start demo client."
