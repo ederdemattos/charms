@@ -4,6 +4,7 @@ from charmhelpers.core.hookenv import (
     action_set,
     config,
     status_set,
+    log,
 )
 
 from charms.reactive import (
@@ -20,7 +21,12 @@ cfg = config()
 def config_changed():
     if all(k in cfg for k in ['mode']):
         if cfg['mode'] in ['fnc', 'fne', 'fnd', 'fnu']:
-            print("Configuring: FlowNAC", cfg['mode'].upper())
+            log('Configuring: FlowNAC' + cfg['mode'].upper(), 'INFO')
+        else:
+            log('Unsupported mode' + cfg['mode'].upper(), 'WARN')
+    else:
+        log('Undefined mode', 'WARN')
+        cfg['mode']='Undefined'
     set_flag('flownac.configured')
     status_set('active', 'VNF ready!')
     return
@@ -101,9 +107,11 @@ def restart():
 def check_serv():
     err = ''
     try:
-        #if is_fnu():
-        cmd = "./check.sh"
-        result, err = charms.sshproxy._run(cmd)
+        if is_fnu():
+            cmd = "sudo check.sh"
+            result, err = charms.sshproxy._run(cmd)
+        else:
+            action_fail('Check-serv not available for:' + cfg['mode'])
     except:
         action_fail('command failed:' + err)
     else:
@@ -116,11 +124,11 @@ def check_serv():
 def start_client():
     err = ''
     try:
-        #if is_fnu():
-        # Client not prepared for charm execution
-        #cmd = "./client.sh"
-        cmd = "ls"
-        result, err = charms.sshproxy._run(cmd)
+        if is_fnu():
+            cmd = "sudo start_fnu.sh -c"
+            result, err = charms.sshproxy._run(cmd)
+        else:
+            action_fail('Check-serv not available for:' + cfg['mode'])
     except:
         action_fail('command failed:' + err)
     else:
