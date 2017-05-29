@@ -83,6 +83,9 @@ def bootstrap_charm_deps():
         check_call([pip, 'install', '-U', '--no-index', '-f', 'wheelhouse',
                     'pip'])
 		# install the rest of the wheelhouse deps EDER1
+        check_call([pip, 'install', '-U', '--no-index', '-f', 'wheelhouse'] +
+                   glob('wheelhouse/six*'))					
+		# install the rest of the wheelhouse deps EDER1.1
         check_call([pip, 'install', '--force-reinstall', '--no-index', '-f', 'wheelhouse'] +
                    glob('wheelhouse/packag*'))					
 		# install the rest of the wheelhouse deps EDER2
