@@ -6,7 +6,7 @@
     - "libssl-dev"
     "use_venv": !!bool "false"
     "include_system_packages": !!bool "false"
-  "vyos-proxy": {}
+  "fw-proxy": {}
 "includes":
 - "layer:basic"
 "is": "fw-proxy"

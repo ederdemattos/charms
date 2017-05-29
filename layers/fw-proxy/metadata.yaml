@@ -1,4 +1,4 @@
-"name": "vyos-proxy"
+"name": "fw-proxy"
 "summary": "VyOS Proxy charm for ping"
 "maintainers":
 - "Marco Ceppi <marco.ceppi@canonical.com>"
